@@ -1,0 +1,1 @@
+# smhrd_mini_project

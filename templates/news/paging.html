@@ -1,0 +1,36 @@
+{%load mathfilters%}
+<div class ="container mt-5">
+    <ul class="pagination justify-content-center">
+        <!-- 
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li> 
+        -->
+
+        <!-- 맨 처음으로 이동 -->
+        <li class="page-item"><a class="page-link" href="javascript:goPage(0)">First</a></li>
+        
+        <!-- 이전 페이지로 이동 -->
+        {%if commonPage.isPrev %}
+            <li class="page-item"><a class="page-link" href="javascript:goPage({{commonPage.prev_page}})">Previous</a></li>
+        {%endif%}
+
+        <!-- 페이지 이동 -->
+        {%for pg in commonPage.page_range%}
+            {% if pg == commonPage.curPage%}
+                <li class="page-item active"><a class="page-link" href="javascript:goPage({{pg}})">{{pg|add:1}}</a></li>
+            {%else%}
+                <li class="page-item"><a class="page-link" href="javascript:goPage({{pg}})">{{pg|add:1}}</a></li>
+            {%endif%}
+        {%endfor%}
+
+        <!-- 다음 페이지로 이동 -->
+        {% if commonPage.isNext %}
+            <li class="page-item"><a class="page-link" href="javascript:goPage({{commonPage.next_page}})">Next</a></li>
+        {%endif%}
+        
+        <!-- 맨 마지막으로 이동 -->
+        <li class="page-item"><a class="page-link" href="javascript:goPage({{commonPage.totalPage}})">Last</a></li>
+        
+   </ul>
+ </div>

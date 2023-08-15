@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="header">
+    <a href="/"><img src="{% static 'images/logo.png' %}" alt=""></a>
+</div>
+<div class="secondheader">
+    <button class="login-button" id="btnlogon">로그인 | 회원가입</button>
+</div>
+
+<script>
+    $(document).ready(()=>{
+        $("#btnlogon").click(()=>{
+            location.href("logon.html")
+        })
+    })
+</script>

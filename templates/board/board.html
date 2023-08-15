@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block contents %}
+{% load static %}
+
+{% csrf_token %}
+<div>
+  <div class="container">
+  <a href="/board?type=1"><button type="button" class="btn btn-success btn-lg">전체</button></a> &nbsp;
+  <a href="/board?type=2"><button type="button" class="btn btn-success btn-lg">구인</button></a> &nbsp;
+  <a href="/board?type=3"><button type="button" class="btn btn-success btn-lg">구직</button></a> &nbsp;
+  <a href="/board?type=4"><button type="button" class="btn btn-success btn-lg">talk</button></a> &nbsp;
+</div>
+<div class="container mt-5">
+    <table class="table">
+      <colgroup>
+        <col width="10%"/>
+        <col width="10%"/>
+        <col width="20%"/>
+        <col width="30%"/>
+        <col width="30%"/>
+      </colgroup>
+      <thead class="table-dark">
+        <tr>
+            <th>번호</th>
+            <th>분류</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in boardList %}
+            <tr>
+                <td>{{item.board_index}}</td>
+                <td>{{item.board_type}}</td>
+                <td>{{item.board_title}}</td>
+                <td>{{item.user_id}}</td>
+                <td>{{item.board_hit}}</td>
+            </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+</div> 
+<div class="container mt-5" style="text-align:right">
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary" id="btnwrite">글쓰기</button>
+  </div>
+</div>
+</div>
+
+{% endblock %}
+    
+    

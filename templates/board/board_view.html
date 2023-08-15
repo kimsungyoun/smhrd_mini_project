@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% csrf_token %}
+<div class="container mt-5">
+    <table class="table">
+      <colgroup>
+        <col width="13%"/>
+        <col width="20%"/>
+        <col width="13%"/>
+        <col width="20%"/>
+        <col width="13%"/>
+        <col width="20%"/>
+      </colgroup>
+  
+      <tbody>
+        <tr>
+          <th>제목</th>
+          <td colspan="5">{{boardItem.board_title}}</td>
+        </tr>
+        <tr>
+          <th>작성자</th>
+          <td>{{boardItem.user_id}}</td>
+          <th>분류</th>
+          <td>{{boardItem.board_type}}</td>
+          <th>작성일</th>
+          <td>{{boardItem.board_date}}</td>
+        </tr>  
+        <tr>
+          <th>내용</th>
+          <td colspan="5">{{boardItem.board_content|linebreaks}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container mt-5" style="text-align:right">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary" id="btnModify">수정</button>
+      <button type="button" class="btn btn-primary" id="btnDelete">삭제</button>
+      <button type="button" class="btn btn-primary" id="btnList">목록</button>
+    </div>
+  </div>
+
+{% end block %}

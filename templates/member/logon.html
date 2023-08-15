@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<form id="logonform">
+  {% csrf_token %}
+  <input type="hidden" name="idcheckyn" id="idcheckyn" value="N" >
+    <div class="container mt-5">
+      <div class="mb-3 mt-3">
+        <label for="title" class="form-label">사용자아이디:</label>
+        <input type="text" class="form-control" name="userid"  id="userid">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="password" class="form-label">패스워드:</label>
+        <input type="text" class="form-control" id="password" name="password" required>
+      </div>             
+    </div>
+    <div class="container mt-5" style="text-align:right"> 
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" id="btnWrite">로그온</button>
+      </div>
+    </div>
+</form>
+    
+<script>
+$(document).ready( ()=>{
+    $("#btnWrite").click(()=>{
+      csrf = $("input[type=hidden][name=csrfmiddlewaretoken]").val();
+      console.log( csrf );
+      $.ajax({
+        url:"/member/logon_proc",
+        data:{
+            "userid":$("#userid").val(), 
+            "csrfmiddlewaretoken":csrf,
+            "password":$("#password").val()
+        },
+        type:"post",
+        dataType:"json"
+      })
+      .done( (res)=>{
+          if( res.result=="success")
+          {
+            alert("로그온성공");
+            location.href="/";
+          }
+          else 
+          {
+            alert("등록실패");
+          }
+      })
+      .fail( (res, error, status)=>{
+          console.log(status)
+      })
+    });
+}) 
+</script>
+
+{%endblock%}

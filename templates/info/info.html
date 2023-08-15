@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block contents %}
+{% load static %}
+
+{% csrf_token %}
+<div class="container">
+  <a href="/info?location=1"><button type="button" class="btn btn-success btn-lg">경기</button></a>
+  &nbsp;
+  <a href="/info?location=2"><button type="button" class="btn btn-success btn-lg">서울</button></a>
+  &nbsp;
+  <a href="/info?location=3"><button type="button" class="btn btn-success btn-lg">인천</button></a>
+  &nbsp;
+  <a href="/info?location=4"><button type="button" class="btn btn-success btn-lg">충청북도</button></a>
+  &nbsp;
+  <a href="/info?location=5"><button type="button" class="btn btn-success btn-lg">전라남도</button></a>
+  &nbsp;
+  <a href="/info?location=6"><button type="button" class="btn btn-success btn-lg">충청남도</button></a>
+  &nbsp;
+  <a href="/info?location=8"><button type="button" class="btn btn-success btn-lg">부산광역시</button></a>
+  &nbsp;
+  <a href="/info?location=7"><button type="button" class="btn btn-success btn-lg">제주특별시</button></a>
+  &nbsp;
+</div>
+    
+
+
+  <div class="container mt-5">
+    <table class="table">
+        <colgroup>
+            <col width="9%"/>
+            <col width="6%"/>
+            <col width="6%"/>
+            <col width="30%"/>
+            <col width="8%"/>
+        </colgroup>
+        <thead class="table-dark">
+          <tr>
+            <th>기업이름</th>
+            <th>대표자명</th>
+            <th>업종</th>
+            <th>주소</th>
+            <th>전화번호</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in boardList %}
+            <tr>
+                <td>{{item.ent_name}}</td>
+                <td>{{item.ent_employer}}</td>
+                <td>{{item.ent_sectors}}</td>
+                <td>{{item.ent_address}}</td>
+                <td>{{item.ent_number}}</td>
+            </tr>
+          {%endfor%}
+        </tbody>
+    </table>
+  </div>
+{%endblock%}
